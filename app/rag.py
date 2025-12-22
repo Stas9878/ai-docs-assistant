@@ -4,6 +4,7 @@ from langchain_qdrant import QdrantVectorStore
 from langchain_ollama import OllamaEmbeddings
 from langchain_core.documents import Document
 
+from app.logger import logger
 from app.settings import settings
 
 # Подключение к Qdrant
@@ -38,4 +39,4 @@ def initialize_rag_from_docs():
 
     if docs:
         vector_store.add_documents(docs)
-        print(f'Загружено {len(docs)} документов в RAG при инициализации.')
+        logger.info(f'Загружено {len(docs)} документов в RAG при инициализации.')
