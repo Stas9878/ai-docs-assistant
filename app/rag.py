@@ -1,9 +1,9 @@
 from pathlib import Path
 from qdrant_client import QdrantClient
-from qdrant_client.models import VectorParams, Distance
-from langchain_qdrant import QdrantVectorStore
 from langchain_ollama import OllamaEmbeddings
 from langchain_core.documents import Document
+from langchain_qdrant import QdrantVectorStore
+from qdrant_client.models import VectorParams, Distance
 
 from app.logger import logger
 from app.settings import settings
