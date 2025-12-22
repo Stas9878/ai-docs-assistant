@@ -4,3 +4,4 @@
 **Ответ**:
 ```json
 {"id": 42, "title": "string", "status": "pending"}
+```

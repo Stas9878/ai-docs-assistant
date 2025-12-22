@@ -4,3 +4,4 @@
 **Ответ**:
 ```json
 [{"id": 1, "username": "alice"}]
+```
