@@ -11,7 +11,7 @@ from app.rag import initialize_rag_from_docs
 async def lifespan(app: FastAPI):
     logger.info('Инициализация RAG из docs/')
 
-    # Выполняем синхронную функцию в отдельном потоке
+    # Выполняем загрузку эмбеддингов в отдельном потоке
     loop = asyncio.get_event_loop()
     with ThreadPoolExecutor() as pool:
         await loop.run_in_executor(pool, initialize_rag_from_docs)
