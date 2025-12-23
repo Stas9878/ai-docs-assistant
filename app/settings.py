@@ -10,6 +10,7 @@ class Settings(BaseSettings):
 
     OLLAMA_HOST: str
     OLLAMA_PORT: int
+    OLLAMA_MODEL: str
 
     class Config:
         env_file = '.env'
