@@ -5,7 +5,7 @@ from concurrent.futures import ThreadPoolExecutor
 
 from app.logger import logger
 from app.storage import save_document
-from app.agents import generate_documentation
+from app.agents import generate_and_validate_documentation
 from app.rag import initialize_rag_from_docs, search_documentation
 from app.schemas import SearchRequest, SearchResponse, GenerateRequest, GenerateResponse
 
@@ -53,7 +53,7 @@ def generate_docs(request: GenerateRequest):
     Генерирует новую документацию и сохраняет её в docs/.
     """
     # 1. Проверяем, не существует ли уже документ
-    if search_documentation(request.query, similarity_threshold=0.7):
+    if search_documentation(request.query, similarity_threshold=0.75):
         return GenerateResponse(
             success=False,
             message='Документ уже существует. Используйте /search.'
@@ -61,11 +61,11 @@ def generate_docs(request: GenerateRequest):
 
     try:
         # 2. Генерация через агента
-        content = generate_documentation(request.query)
+        content = generate_and_validate_documentation(request.query)
 
         # 3. Базовая валидация: должен содержать заголовок
-        if not content.strip().startswith('### '):
-            logger.error('Сгенерированный документ не соответствует формату')
+        if not content.strip().startswith('###'):
+            logger.error(f'Сгенерированный документ не соответствует формату для запроса: {request.query}')
             return GenerateResponse(
                 success=False,
                 message='Ошибка генерации: неверный формат документа.'
