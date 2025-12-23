@@ -10,9 +10,9 @@ from app.settings import settings
 
 
 # Конфигурация векторного хранилища
-collection_name = 'api_docs'
-embedding_model_name = 'mxbai-embed-large'
-vector_size = 1024
+collection_name = settings.QDRANT_COLLECTION_NAME
+embedding_model_name = settings.EMBEDDING_MODEL_NAME
+vector_size = settings.VECTOR_SIZE
 
 # Инициализация клиента Qdrant и создание коллекции
 client = QdrantClient(settings.QDRANT_HOST, port=settings.QDRANT_PORT)

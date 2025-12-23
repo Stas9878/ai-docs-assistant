@@ -6,9 +6,9 @@ class GenerateRequest(BaseModel):
 
 
 class GenerateResponse(BaseModel):
-    status: str
-    content: str | None = None
-    message: str | None = None
+    success: bool
+    message: str
+    file_path: str | None = None
 
 
 class SearchRequest(BaseModel):
