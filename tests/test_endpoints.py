@@ -52,6 +52,7 @@ def test_generate_new(client):
         assert gen_resp.status_code == 200
         data = gen_resp.json()
         assert data['success'] is True
+        assert data['content'].startswith('###')
         assert data['file_path'] == 'docs/test_search.md'
         mock_save.assert_called_once()
 
