@@ -8,6 +8,7 @@ class GenerateRequest(BaseModel):
 class GenerateResponse(BaseModel):
     success: bool
     message: str
+    content: str | None = None
     file_path: str | None = None
 
 

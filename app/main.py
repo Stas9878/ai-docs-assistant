@@ -87,6 +87,7 @@ def generate_docs(request: GenerateRequest):
         return GenerateResponse(
             success=True,
             message='Документ успешно создан и сохранён.',
+            content=content,
             file_path=file_path
         )
 
