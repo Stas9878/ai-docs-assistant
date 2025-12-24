@@ -9,7 +9,7 @@ async def check_qdrant():
     """Проверяет доступность Qdrant через REST API."""
     try:
         async with httpx.AsyncClient(timeout=3.0) as client:
-            resp = await client.get(f'http://{settings.QDRANT_HOST}:{settings.QDRANT_PORT}/collections')
+            resp = await client.get(f'{settings.qdrant_url}/collections')
             return resp.status_code == 200
     except Exception as e:
         logger.error(f'Qdrant недоступен: {e}')
@@ -20,7 +20,7 @@ async def check_ollama():
     """Проверяет доступность Ollama."""
     try:
         async with httpx.AsyncClient(timeout=3.0) as client:
-            resp = await client.get(f'http://{settings.OLLAMA_HOST}:{settings.OLLAMA_PORT}/api/tags')
+            resp = await client.get(f'{settings.ollama_url}/api/tags')
             return resp.status_code == 200
     except Exception as e:
         logger.error(f'Ollama недоступен: {e}')

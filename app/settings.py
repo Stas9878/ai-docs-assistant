@@ -17,6 +17,10 @@ class Settings(BaseSettings):
         env_file_encoding = 'utf-8'
 
     @property
+    def qdrant_url(self):
+        return f'http://{self.QDRANT_HOST}:{self.QDRANT_PORT}'
+
+    @property
     def ollama_url(self):
         return f'http://{self.OLLAMA_HOST}:{self.OLLAMA_PORT}'
 
