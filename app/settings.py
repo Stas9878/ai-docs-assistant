@@ -16,5 +16,10 @@ class Settings(BaseSettings):
         env_file = '.env'
         env_file_encoding = 'utf-8'
 
+    @property
+    def ollama_url(self):
+        return f'http://{self.OLLAMA_HOST}:{self.OLLAMA_PORT}'
+
+
 
 settings = Settings()

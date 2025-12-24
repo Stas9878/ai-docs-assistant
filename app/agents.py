@@ -6,7 +6,7 @@ from app.settings import settings
 # Инициализация LLM (общая для всех агентов)
 llm = LLM(
     model=settings.OLLAMA_MODEL,
-    base_url=f'http://{settings.OLLAMA_HOST}:{settings.OLLAMA_PORT}',
+    base_url=settings.ollama_url,
     temperature=0.0,
     timeout=60.0,
     max_tokens=300
