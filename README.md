@@ -85,7 +85,7 @@ QDRANT_COLLECTION_NAME=api_docs
 # Ollama настройки
 OLLAMA_HOST=localhost
 OLLAMA_PORT=11434
-OLLAMA_MODEL=llama3.2  # или другая модель
+OLLAMA_MODEL=ollama/my-api-docs  # дообученная модель, которая использовалась на курсе
 
 # Эмбеддинги
 EMBEDDING_MODEL_NAME=nomic-embed-text  # или другая модель для эмбеддингов
@@ -98,7 +98,7 @@ VECTOR_SIZE=768  # Размерность вектора эмбеддингов
 
 ```bash
 # Установка модели для LLM
-ollama pull llama3.2
+ollama pull my-api-docs
 
 # Установка модели для эмбеддингов
 ollama pull nomic-embed-text
