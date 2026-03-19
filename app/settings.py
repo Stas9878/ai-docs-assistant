@@ -8,6 +8,7 @@ class Settings(BaseSettings):
     EMBEDDING_MODEL_NAME: str
     VECTOR_SIZE: int
 
+    API_KEY: str
     OLLAMA_HOST: str
     OLLAMA_PORT: int
     OLLAMA_MODEL: str

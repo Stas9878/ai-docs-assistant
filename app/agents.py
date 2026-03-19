@@ -9,7 +9,8 @@ llm = LLM(
     base_url=settings.ollama_url,
     temperature=0.0,
     timeout=60.0,
-    max_tokens=300
+    max_tokens=300,
+    api_key=settings.API_KEY
 )
 
 
