@@ -83,6 +83,7 @@ QDRANT_PORT=6333
 QDRANT_COLLECTION_NAME=api_docs
 
 # Ollama настройки
+API_KEY=ollama
 OLLAMA_HOST=localhost
 OLLAMA_PORT=11434
 OLLAMA_MODEL=ollama/my-api-docs  # дообученная модель, которая использовалась на курсе
