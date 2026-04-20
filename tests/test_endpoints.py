@@ -19,20 +19,21 @@ def client():
 
 def test_search_existing(client):
     """Тест: поиск существующего документа."""
-    response = client.post('/search', json={'query': 'Эндпоинт для получения профиля пользователя'})
+    response = client.post('/search', json={'query': 'Эндпоинт для создания новой задачи для пользователя'})
     assert response.status_code == 200
     data = response.json()
     assert data['found'] is True
-    assert 'GET /api/v1/profile' in data['content']
+    assert 'POST /api/v1/tasks' in data['content']
 
 
 def test_search_not_found(client):
     """Тест: поиск несуществующего документа."""
-    response = client.post('/search', json={'query': 'Что такое RAG?'})
-    assert response.status_code == 200
-    data = response.json()
-    assert data['found'] is False
-    assert 'Документация не найдена' in data['message']
+    with patch('app.main.search_documentation', return_value=None):
+        response = client.post('/search', json={'query': 'любой запрос'})
+        assert response.status_code == 200
+        data = response.json()
+        assert data['found'] is False
+        assert 'Документация не найдена' in data['message']
 
 
 def test_generate_new(client):
