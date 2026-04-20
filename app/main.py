@@ -7,8 +7,8 @@ from app.logger import logger
 from app.storage import save_document
 from app.health import check_all_services
 from app.agents import generate_and_validate_documentation
-from app.rag import initialize_rag_from_docs, search_documentation
 from app.schemas import SearchRequest, SearchResponse, GenerateRequest, GenerateResponse
+from app.rag import initialize_rag_from_docs, add_document_to_index, search_documentation
 
 
 @asynccontextmanager
@@ -81,8 +81,8 @@ def generate_docs(request: GenerateRequest):
         # 4. Сохранение
         file_path = save_document(content, request.query)
 
-        # 5. Обновить RAG
-        initialize_rag_from_docs()
+        # 5. Индексируем новый файл
+        add_document_to_index(file_path)
 
         return GenerateResponse(
             success=True,
